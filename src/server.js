@@ -43,9 +43,21 @@ const init = async () => {
   const authenticationsService = new AuthenticationsService();
   */
 
+  /*
   const server = Hapi.server({
     port: process.env.PORT,
     host: process.env.HOST,
+    routes: {
+      cors: {
+        origin: ['*'],
+      },
+    },
+  });
+  */
+
+  const server = Hapi.server({
+    port: 5000,
+    host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
     routes: {
       cors: {
         origin: ['*'],
@@ -124,6 +136,7 @@ const init = async () => {
 
   await server.start();
   console.log(`Server berjalan pada ${server.info.uri}`);
+  //console.log(`Server berjalan pada ${server.info.uri}`);
 };
 
 init();
